@@ -1,10 +1,10 @@
 # DGCG solver
 
 This solver is correspods to the one developed in
-[this paper](https://arxiv.org/abs/2012.11706) named
+[this paper](https://link.springer.com/article/10.1007/s10208-022-09561-z) named
 **A Generalized Conditional Gradient Method for Dynamic Inverse Problems with 
 Optimal Transport Regularization** by Kristian Bredies, Marcello Carioni, 
-Silvio Fanzon and Francisco Romero-Hinrichsen.
+Silvio Fanzon and Francisco Romero.
 
 A *dynamical inverse problem* is one in which the both the data, and the
 forward operators are allowed to change in time.  For instance, one could
@@ -19,7 +19,7 @@ together these give us a target minimization problem from which we find a
 solution to the target dynamic inverse problem.
 
 For clear, deep, and mathematically correct explanations, please refer to 
-[the paper](https://arxiv.org/abs/2012.11706). The following is a mathematically
+[the paper](https://link.springer.com/article/10.1007/s10208-022-09561-z). The following is a mathematically
 incomplete description of the considered Energy and minimization problem, but 
 it is enough to intuitively describe it.
 
@@ -43,7 +43,7 @@ The energy we consider to solve the target *dynamic inverse problem* is
 parametrized by α, β > 0, and acts
 in the following way over such element:
 <p align="center">
-<img src="https://github.com/panchoop/DGCG_algorithm/blob/assets/tex/eq_4.gif" width="300">
+<img src="https://github.com/sfanzon/DGCG_algorithm/blob/assets/tex/eq_4.gif" width="300">
 </p>
 Intuitively, the energy is penalizing the squared speed of the dynamic Radon
 measures.
@@ -52,7 +52,7 @@ Since measure spaces are in particular vector spaces, given a family of weights
 ω<sub>i</sub> >0,  and a family of curves γ<sub>i</sub>, we can now consider μ, 
 a weighted sum of these transported Dirac deltas
 <p align="center">
-<img src="https://github.com/panchoop/DGCG_algorithm/blob/assets/tex/eq_5.gif" width="600">
+<img src="https://github.com/sfanzon/DGCG_algorithm/blob/assets/tex/eq_5.gif" width="600">
 </p>
 which is also a dynamic Radon measure.
 
@@ -64,7 +64,7 @@ consider at each of these time samples t<sub>i</sub>, a **forward operator**
 mapping from the space of Radon measures, into some **data space** H<sub>t<sub>i</sub></sub>
 
 <p align="center">
-<img src="https://github.com/panchoop/DGCG_algorithm/blob/assets/tex/eq_6.gif" width="200">
+<img src="https://github.com/sfanzon/DGCG_algorithm/blob/assets/tex/eq_6.gif" width="200">
 </p>
 
 Where at each time sample t<sub>i</sub>, the respective data spaces
@@ -78,7 +78,7 @@ any dynamical Radon measure ν, the data discrepancy term of our minimization
 problem is
 
 <p align="center">
-<img src="https://github.com/panchoop/DGCG_algorithm/blob/assets/tex/eq_7.gif" width="350">
+<img src="https://github.com/sfanzon/DGCG_algorithm/blob/assets/tex/eq_7.gif" width="350">
 </p>
 
 And putting together the data discrepancy term with the proposed 
@@ -86,14 +86,14 @@ energy J<sub>α, β</sub> to minimize, we build up the target
 functional that is minimized by our algorithm.
 
 <p align="center">
-<img src="https://github.com/panchoop/DGCG_algorithm/blob/assets/tex/eq_1.gif" width="800">
+<img src="https://github.com/sfanzon/DGCG_algorithm/blob/assets/tex/eq_1.gif" width="800">
 </p>
                                                                                                             
 The energy J<sub>α, β</sub> will promote sparse dynamic measures  μ, and the
 proposed algorithm will return one such measure.
 
 To see an animated example of Dynamic sources, measured data, and obtained reconstructions,
-please see [this video](https://www.youtube.com/watch?v=daKkJZH3WD4).
+please see [this video](https://youtu.be/wO8j1fSpd-k).
 
 ### Documentation
 
@@ -136,7 +136,7 @@ consider such cut-off to enforce this condition.
 To get this repository, clone it locally with the command
 
 ``` 
-git clone https://github.com/panchoop/DGCG_algorithm.git
+git clone https://github.com/sfanzon/DGCG_algorithm.git
 ```
 
 Requirements to run this code with virtual environment:
@@ -150,7 +150,7 @@ Alternatively, it can be run using [docker](https://www.docker.com/) without
 any pre-requisite in any operative system. To run with this method:
 - Install Docker in your system.
 - Clone locally the repository.
-- Execute the command `run -v $(pwd):$(pwd) -w $(pwd) --rm panchoop/dgcg_alg:v0.1`
+- Execute the command `run -v $(pwd):$(pwd) -w $(pwd) --rm sfanzon/dgcg_alg:v0.1`
 It will execute your script saved as `main.py` in the same folder.
 
 #### Warning 1
@@ -173,19 +173,19 @@ exported as a `.mp4` video file (via the `.animate()` class method).
 
 #### Warning 2
 The code is heavily sub-optimized. Therefore expect long execution times.
-See table 1 in paper.
+See table 1 in [paper](https://link.springer.com/article/10.1007/s10208-022-09561-z).
 
 ### Working example/Tutorial
 
 The file `examples/Example_1.py` runs the numerical experiment #1 that is presented
-in the paper. Run it directly inside the folder. To further understand 
+in the [paper](https://link.springer.com/article/10.1007/s10208-022-09561-z). Run it directly inside the folder. To further understand 
 how to use the module, it is recommended to take a look in the file. 
 It is well commented.
 
 The script will generate a folder where the iteration results will be stored. 
 
 Further files `Example_2_*.py` and `Example_3` are the ones presented in the
-paper.
+[paper](https://link.springer.com/article/10.1007/s10208-022-09561-z).
 
 ### Fast and easy way to consider a forward operator K<sup>\*</sup>
 
@@ -194,7 +194,7 @@ Let φ:Ω -> H be a differentiable function mapping from our domain of interest
 Ω to some Hilbert space H. Then, we can define the forward operator 
 K<sup>\*</sup>: M(Ω) -> H, and its predual K: H -> C(Ω) as
 
-![eq_3](https://github.com/panchoop/DGCG_algorithm/blob/assets/tex/eq_3.gif)
+![eq_3](https://github.com/sfanzon/DGCG_algorithm/blob/assets/tex/eq_3.gif)
 
 Differentiability of φ is required for the differentiability of K(h),
 allowing us to minimize the linearized minimization problem arising from
@@ -204,7 +204,6 @@ the insertion step of this algorithm.
 - When running the algorithm, nearing convergence the energy is not
   monotonously decreasing! 
 - - **answer:** Try setting the tolerance value to something higher. Likely
-    there are rounding errors, see [this
-issue](https://github.com/panchoop/DGCG_algorithm/issues/13#issue-774344239)
+    there are rounding errors.
 
 
