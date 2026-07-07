@@ -45,7 +45,7 @@ class Animate(object):
         measure.reorder()
         # Define the colors, these depends on the intensities
         total_intensities = measure.weights/measure._energies
-        brg_cmap = plt.cm.get_cmap('brg')
+        brg_cmap = mpl.colormaps['brg']
         colors = brg_cmap(np.array(total_intensities)/max(total_intensities))
         # Get the family of segments and times
         segments = []
@@ -80,10 +80,10 @@ class Animate(object):
         self.block = block
         # For colorbar
         norm = mpl.colors.Normalize(vmin=0, vmax=max(measure.weights))
-        cmap = plt.get_cmap('brg', 100)
+        cmap = mpl.colormaps['brg'].resampled(100)
         sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
         sm.set_array([])
-        self.fig.colorbar(sm,
+        self.fig.colorbar(sm, ax=self.ax,
                           ticks=np.linspace(0, max(measure.weights), 9))
 
 
@@ -220,10 +220,10 @@ def animate_dual_variable(w_t, measure, **kwargs):
     ax.add_collection(line_collection)
     # Create colorbar
     norm = mpl.colors.Normalize(vmin=val_min, vmax=val_max)
-    cmap = plt.get_cmap('RdGy', 100)
+    cmap = mpl.colormaps['RdGy'].resampled(100)
     sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
     sm.set_array([])
-    fig.colorbar(sm, ticks=np.linspace(val_min, val_max, 9))
+    fig.colorbar(sm, ax=ax, ticks=np.linspace(val_min, val_max, 9))
 
     def init():
         # Initialize animation

@@ -183,7 +183,7 @@ class logger:
                 normalized_energies = np.zeros(np.shape(almost_normalized))
             else:
                 normalized_energies = almost_normalized/max(almost_normalized)
-            cmap = mpl.cm.get_cmap('brg')
+            cmap = mpl.colormaps['brg']
             norm = mpl.colors.Normalize(vmin=min(energy_curves),
                                         vmax=max(energy_curves))
             sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
@@ -192,7 +192,7 @@ class logger:
             for curve, energy in zip(reversed(stationary_curves),
                                      reversed(normalized_energies)):
                 _ = curve.draw(ax=ax, color=cmap(energy)[0:3])
-            plt.colorbar(sm)
+            fig.colorbar(sm, ax=ax)
             plt.title('Found {} local minima'.format(len(stationary_curves)))
             fig.suptitle('iter {:03d} stationary curves'.format(self.iter))
             filename = "{}/iter_{:03d}_insertion_stationary_points.pdf"

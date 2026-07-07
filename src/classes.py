@@ -570,17 +570,17 @@ class measure:
         num_plots = len(self.weights)
         intensities = self.weights/self._energies
         'get the brg colormap for the intensities of curves'
-        colors = plt.cm.brg(intensities/max(intensities))
+        colors = mpl.colormaps['brg'](intensities/max(intensities))
         ax = ax or plt.gca()
         for i in range(num_plots):
             self.curves[i].draw(ax=ax, color=colors[i, :3])
         plt.gca().set_aspect('equal', adjustable='box')
         'setting colorbar'
         norm = mpl.colors.Normalize(vmin=0, vmax=max(intensities))
-        cmap = plt.get_cmap('brg', 100)
+        cmap = mpl.colormaps['brg'].resampled(100)
         sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
         sm.set_array([])
-        plt.colorbar(sm, ticks=np.linspace(0, max(intensities), 10))
+        plt.gcf().colorbar(sm, ax=ax, ticks=np.linspace(0, max(intensities), 10))
         return ax
 
     def animate(self, filename=None, show=True, block=False):
